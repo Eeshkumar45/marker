@@ -3,6 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from databases import Database
 from dotenv import load_dotenv
+import os
 load_dotenv()
 #DATABASE_URL = "postgresql://postgres:posT1234@localhost/HF"
 DATABASE_URL = os.getenv("POSTGRES")
