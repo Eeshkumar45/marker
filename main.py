@@ -20,21 +20,18 @@ from datetime import timedelta
 import os
 from fastapi.middleware import Middleware
 
-middleware = [
-    Middleware(
-        CORSMiddleware,
-        allow_origins=["http://127.0.0.1:5500"],  # ← Explicitly list your frontend origin
-        allow_credentials=True,                 # ← If you need cookies or Authorization headers
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-]
-
 # Create tables
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(middleware=middleware)
+app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5500"],  # Use your real frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Database dependency
 def get_db():
