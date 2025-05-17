@@ -25,11 +25,17 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",  # Your frontend domain
+    "https://marker.wasmer.app"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://marker.wasmer.app/"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=origins,          # Allowed origins
+    allow_credentials=True,
+    allow_methods=["*"],            # GET, POST, etc.
+    allow_headers=["*"],           # Custom headers, e.g., Authorization
 )
 
 # Database dependency
