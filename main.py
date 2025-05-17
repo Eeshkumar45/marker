@@ -17,7 +17,7 @@ from fastapi_limiter.depends import RateLimiter
 import redis.asyncio as redis
 from datetime import datetime
 from datetime import timedelta
-
+import os
 # Create tables
 Base.metadata.create_all(bind=engine)
 
