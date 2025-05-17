@@ -18,18 +18,22 @@ import redis.asyncio as redis
 from datetime import datetime
 from datetime import timedelta
 import os
+from fastapi.middleware import Middleware
+
+middleware = [
+    Middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,  # Required when using "*"
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+]
 # Create tables
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(middleware=middleware)
 
-# Enable CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Database dependency
 def get_db():
