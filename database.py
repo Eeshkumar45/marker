@@ -5,7 +5,6 @@ from databases import Database
 from dotenv import load_dotenv
 import os
 load_dotenv()
-#DATABASE_URL = "postgresql://postgres:posT1234@localhost/HF"
 DATABASE_URL = os.getenv("POSTGRES")
 #DATABASE_URL = "postgresql://postgres:postgres@db:5432/mydatabase"
 
